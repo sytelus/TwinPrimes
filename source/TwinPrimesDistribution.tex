@@ -1,0 +1,270 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,amsthm,url}
+
+\numberwithin{equation}{section}
+ 
+%setup paragraphs
+\addtolength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+\begin{document}  
+
+\title{On Expression Of Number As A Sum Of Primes And Twin Prime Counting Function Using Sieve Method Without Heuristic Assumption}
+% TODO: author footnot
+\author{Shital Shah \footnote{Independent Researcher} \footnote{\texttt{shital@ShitalShah.com}}}
+\date{June 12, 2005}   
+\maketitle
+\pagestyle{headings}
+\begin{abstract} 
+We will use the sieve method for twin primes to obtain the relationship for the twin prime counting function same as that was conjectured by Hardy and Littlewood \cite{HLConjecture} but without making their heuristic assumption about the prime number distribution. Later we generalize our method to get the expression for the counting function for prime pairs (n, n+2k) and show that it is again same as the extended Goldbach conjecture that was conjectured by Hardy and Littlewood.
+\end{abstract}
+
+\section{Introduction}
+\emph{NOTE: }This is a work in progress. Mark Rubenstein (University of Waterloo) has pointed out two major errors in following arguments. First, only the integer part of equation \eqref{PiAsSeries} is the number of primes up to $x$ and the decimal part is actually probability factor. Hence this equation \textit{implicitly} uses heuristics in prime distribution. Second, LHS on equation \eqref{PrimeDensityWithoutEulerA} is ambiguous because if you take all the product over all primes, there is no more primes left meaning $LHS \to 0$ however as $x \to \infty$, $RHS \to \infty$. I consider both the flaws critical and am working toward resolving them. However hopefully, this paper might provide you a helpful suggestion on how two of the most challenging conjectures in mathematics are strongly related along with the Euler Product.
+\\
+\\
+We'll first review the application of the Eratosthenes-Legendre technique \cite{SieveMethods} to obtain the asymptotic relation for the prime counting function $\pi(x)$.
+
+Let us attempt to count how many integers remain after Eratosthenes' sieving procedure is carried out. More generally, let us count the number of positive integers up to $x$ remaining after the deletion of the multiples
+of all primes not exceeding $p_i$. Using traditional notations, this is given by
+\begin{equation} 
+\pi(x,p_i) = x \cdot \Big(1 - \frac{1}{2} - \frac{1}{3} + \frac{1}{6} - \frac{1}{5} + \frac{1}{10} + \frac{1}{15} - \frac{1}{30} - \ldots \pm \frac{1}{2 \cdot 3 \cdot \ldots \cdot p_i}\Big) \label{PiAsSeries} ~ .
+\end{equation}
+
+Using the the expansion
+\begin{eqnarray} 
+\prod\limits_{j=1}^i \Big( 1 - \frac{a}{b_j} \Big) &=& 1 - \frac{a}{b_1} - \frac{a}{b_2} + \frac{a^2}{b_1 b_2} 
+\nonumber\\
+{} & & - \frac{a}{b_3} + \frac{a^2}{b_1 b_3} + \frac{a^2}{b_2 b_3} - \frac{a^3}{b_1 b_2 b_3} - \ldots \pm \frac{a^{i}}{b_1 \cdot b_2 \cdot \ldots \cdot b_i} \label{SeriesExpansion} ~ ,
+\end{eqnarray}
+
+we can rewrite $\pi(x,p_i)$ as
+\begin{eqnarray}
+\pi(x,p_i) & = & x \prod\limits_{j = 1}^i {\Big(1-\frac{1}{{p_j }}\Big)} \label{PrimeDensityWithoutEuler} ~ .
+\end{eqnarray}
+
+If we take the limit $x \to \infty$ and include all the primes in the right hand product, we get
+\begin{equation} \label{PrimeDensityWithoutEulerA}
+\lim_{x \to \infty}\pi(x) =\lim_{x \to \infty} \Big[ x \prod\limits_{j \ge 1} {\Big(1-\frac{1}{{p_j }}\Big)} \Big] ~ ,
+\end{equation}
+
+or
+\begin{equation} \label{AsympPrimeDensityWithoutEuler}
+\lim_{x \to \infty} \frac{\pi(x)}{x \prod\limits_{j \ge 1} {\Big(1-\frac{1}{{p_j }}\Big)}} = 1 ~ .
+\end{equation}
+
+Now we can use the Euler Product \cite{EulerProduct} given by
+\begin{equation} \label{EulersFormula}
+\sum_{r =1}^\infty \frac{1}{r^s} = \prod\limits_{j \ge 1}{\Big(\frac{1}{1-\frac{1}{{p_j^s}}}\Big)} 
+\end{equation}
+
+and the asymptotic relationship for sum of harmonic series \cite{HarmonicSeries} given by
+\begin{equation} \label{AsymptoticHarmonicEq}
+\sum_{r=1}^n \frac{1}{r} \sim \ln(n)
+\end{equation}
+in the relationship we obtained in \eqref{AsympPrimeDensityWithoutEuler} to get
+\begin{equation} \label{PrimeDensityWithEuler}
+\lim_{x \to \infty} \frac{\pi{}(x)}{x / \ln(x)}=1 ~ .
+\end{equation}
+which is also the Prime Number Theorem.
+
+Notice that we could have also used the Merten's Theorem \cite{IntroNT} more directly given by
+\begin{equation} \label{MertenTheorem}
+\prod\limits_{p_j \le x}{\Big(1-\frac{1}{{p_j}}}\Big) \sim \frac{e^{-\gamma}}{\ln(x)} ~ .
+\end{equation}
+
+
+\section{Distribution Of Twin Primes}
+Consider the odd number series
+\begin{equation} \label{OddNumberSeries}
+3, 5, 7, 9, 11, \ldots ~ .
+\end{equation}
+We notice that each pair of the adjacent members in this series is a pair of numbers with the difference $\vert 2 \vert$. 
+
+Let's number each of these pairs with a sequence of integers starting with 3:
+\begin{eqnarray} \label{NumberedTwinPairs}
+3: & 3,5 \nonumber \\
+4: & 5,7 \nonumber \\
+5: & 7,9 \nonumber \\
+6: & 9,11 \nonumber \\
+\vdots 
+\end{eqnarray}
+
+Now we have assigned every integer $n$ with $n \ge 3$ to one and only one twin pair in \eqref{NumberedTwinPairs}. Let's denote the set of integers $\{3, 4, 5, 6, 7, 8, \ldots\}$ by $\eta_i$. Notice that as we eliminate the pairs in \eqref{NumberedTwinPairs} which aren't twin primes, we also eliminate the corresponding numbers from the set $\eta_i$.
+
+Now let's start the sieving process: First eliminate all the pairs in \eqref{NumberedTwinPairs} which have a member divisible by 3. This will result in the elimination of numbers $\{3, 6, 9, \ldots \}$ and $\{5, 8, 11, \ldots\}$ from the set $\eta_i$. Just like Eratosthenes's sieving procedure, we shall cross out those numbers from the set $\eta_i$. The count of remaining numbers in the set $\eta_i$ is also the count of remaining twin pairs after the elimination. Let us denote this count by $\pi_2(x,p_i)$ to stay consistent with the previous section. Also if maximum number of the last pair is x, we will denote the size of $\eta_i$ as 
+\begin{equation} \nonumber
+x_2 = \frac{x-3}{2} ~ ,
+\end{equation}
+
+then we have
+\begin{equation} \nonumber
+\pi_2(x,3) = x_2 \Big(1 - \frac{1}{3} - \frac{1}{3}\Big) ~ .
+\end{equation}
+
+Next, let's eliminate all the pairs with a member divisible by 5. The count of remaining numbers in the set $\eta_i$ is now
+\begin{eqnarray} \nonumber
+\pi_2(x,5) & = & x_2 \Big(1 - \frac{2}{3} - \frac{2}{5} + \frac{4}{3 \cdot 5}\Big) \nonumber ~ .
+\end{eqnarray}
+
+Continuing the sieving procedure up to prime $p_i$, we get
+\begin{eqnarray}
+\pi_2(x,p_i) &=& x_2 \Big(1 - \frac{2^1}{3} - \frac{2^1}{5} + \frac{2^2}{3 \cdot 5} - \frac{2^1}{7} + \frac{2^2}{3 \cdot 7} + \frac{2^2}{5 \cdot 7} - \frac{2^3}{3 \cdot 5 \cdot 7} 
+\nonumber\\
+\nonumber\\
+{} & & - \frac{2^1}{11} + \frac{2^2}{3 \cdot 11} + \frac{2^2}{5 \cdot 11} - \frac{2^3}{3 \cdot 5 \cdot 11} + \frac{2^2}{7 \cdot 11} - \frac{2^3}{3 \cdot 7 \cdot 11} - \frac{2^3}{5 \cdot 7 \cdot 11}
+\nonumber\\
+\nonumber\\
+{} & & + \frac{2^4}{3 \cdot 5 \cdot 7 \cdot 11} - \ldots \pm \frac{2^i}{p_1 p_2 \ldots p_i}\Big) ~ \nonumber.
+\end{eqnarray}
+
+But the series on the right is same as in \eqref{SeriesExpansion} with $a=2$ and $b_i=p_i$. Hence
+\begin{eqnarray}
+\pi_2(x,p_i) & = & x_2 \prod\limits_{j = 2}^i {\Big(1-\frac{2}{p_j}\Big)}
+\label{TwinPrimeCountWithoutAlpha} \\
+& = & x_2 \prod\limits_{j = 2}^i {\Big[\Big(1 - \frac{1}{p_j} \Big) -\frac{1}{p_j} \Big]} 
+\nonumber\\
+& = & \prod\limits_{j = 2}^i {\Big(\alpha_j -\frac{1}{p_j} \Big)} \label{TwinPrimeCountWithAlpha} ~ ,
+\\
+\nonumber\\
+\textrm{where}
+\nonumber\\
+\alpha_j &=& \Big(1 - \frac{1}{p_j} \Big) \label{AlphaDefinition} ~ .
+\end{eqnarray}
+
+Simple expansion of the product in \eqref{TwinPrimeCountWithAlpha} gives us
+\begin{eqnarray} \nonumber
+\pi_2(x,p_i) &=& x_2 \Big( A_i - \frac{A_{i\wr2}}{p_2} - \frac{A_{i\wr3}}{p_3} + \frac{A_{i\wr2,3}}{p_2 p_3} 
+\nonumber\\
+{} & & - \frac{A_{i\wr4}}{p_4} + \frac{A_{i\wr2,4}}{p_2 p_4} + \frac{A_{i\wr3,4}}{p_3 p_4}
+- \frac{A_{i\wr2,3,4}}{p_2 p_3 p_4} - \ldots \pm \frac{1}{p_2 p_3 p_4 \ldots p_i}
+\Big) \label{ExpandedTwinPrimeCountAsProduct} ~ ,
+\end{eqnarray}
+\\
+where we use the convenient notation $A_{i\wr n1,n2,\ldots,nm}$, defined as follows to denote the products of $\alpha_j$ in the above expansion:
+\begin{equation} 
+A_{i\wr n1,n2,\ldots,nm} = \prod\limits_{j \ge 2, j \ne n1,n2,\ldots,nm}^i {\alpha _j }
+\end{equation}
+and
+\begin{equation} \label{DefinitionOfAk}
+A_{i} = \prod\limits_{\scriptstyle j \ge 2}^i {\alpha _j } ~ ,
+\end{equation}
+or alternatively
+\begin{equation} \nonumber
+A_{i\wr n1,n2,\ldots,nm} = \frac{A_i}{\alpha_{n1} \alpha_{n2} \ldots \alpha_{nm}} ~ .
+\end{equation}
+
+Using above in \eqref{ExpandedTwinPrimeCountAsProduct}, we get
+\begin{eqnarray} \nonumber
+\pi_2(x,p_i) &=& x_2 \cdot A_i \Big( 1 - \frac{1}{p_2 \alpha_2} - \frac{1}{p_3 \alpha_3} + \frac{1}{p_2 p_3 \alpha_2 \alpha_3} 
+\nonumber\\
+{} & & - \frac{1}{p_4 \alpha_4} + \frac{1}{p_2 p_4 \alpha_2 \alpha_4} + \frac{1}{p_3 p_4 \alpha_3 \alpha_4}
+- \frac{1}{p_2 p_3 p_4 \alpha_2 \alpha_3 \alpha_4} 
+\nonumber\\
+{} & & \ldots \pm \frac{1}{p_2 p_3 p_4 \ldots p_i \cdot \alpha_2 \alpha_3 \alpha_4 \ldots \alpha_i}
+\Big) ~ \nonumber .
+\end{eqnarray}
+
+Using the definition of $\alpha_j$ from \eqref{AlphaDefinition}, this becomes
+\begin{eqnarray} \nonumber
+\pi_2(x,p_i) &=& x_2 \cdot A_i \Big( 1 - \frac{1}{p_2 - 1} - \frac{1}{p_3 - 1} + \frac{1}{(p_2-1)(p_3-1)} 
+\nonumber\\
+{} & & - \frac{1}{p_4-1} + \frac{1}{(p_2-1)(p_4-1)} + \frac{1}{(p_3-1)(p_4-1)}
+- \frac{1}{(p_2-1)(p_3-1)(p_4-1)}
+\nonumber\\
+{} & & \ldots \pm \frac{1}{(p_2-1)(p_3-1)(p_4-1)\ldots (p_i-1)}
+\Big) ~ \nonumber .
+\end{eqnarray}
+
+But this series is same as the one in \eqref{SeriesExpansion} with $a=1$ and $b_j=p_j-1$. Hence
+\begin{eqnarray} \nonumber
+\pi_2(x,p_i) &=& x_2 \cdot A_i \Big(\prod\limits_{j \ge 2}^i{1 - \frac{1}{p_j - 1}}
+\Big)
+\nonumber\\
+&=& x_2 \cdot A_i \Big(\prod\limits_{j \ge 2}^i{\frac{p_j - 2}{p_j - 1}}\Big)
+\nonumber\\
+&=& x_2 \cdot A_i \Bigg[\prod\limits_{j \ge 2}^i{\frac{\Big(\frac{p_j - 2}{p_j}\Big)}{\Big(\frac{p_j - 1}{p_j}\Big)}}
+\Bigg] \nonumber ~ .
+\end{eqnarray}
+
+Using the definition of $A_i$ from \eqref{DefinitionOfAk} we can rewrite this as
+\begin{eqnarray} \nonumber
+\pi_2(x,p_i) &=& x_2 \cdot A_i^2 \Bigg[\prod\limits_{j \ge 2}^i{\frac{\frac{p_j - 2}{p_j}}{\Big(\frac{p_j - 1}{p_j}\Big)^2}}\Bigg]
+\nonumber\\
+&=& x_2 \cdot A_i^2 \Big[\prod\limits_{j \ge 2}^i{\frac{p_j (p_j - 2)}{(p_j - 1)^2}}\Big]
+\nonumber\\
+&=& x_2 \cdot \Big[\prod\limits_{q \ge 2}^i{\alpha_q}\Big]^2 \cdot \Big[\prod\limits_{j \ge 2}^i{\frac{p_j (p_j - 2)}{(p_j - 1)^2}}\Big]
+\nonumber\\
+&=& x_2 \cdot \Big[\prod\limits_{q \ge 2}^i{\Big(1 - \frac{1}{p_q} \Big)}\Big]^2 \cdot \Big[\prod\limits_{j \ge 2}^i{\frac{p_j (p_j - 2)}{(p_j - 1)^2}}\Big] \nonumber  ~ .
+\end{eqnarray}
+
+As we did in previous section, let's take the limit $x \to \infty$ and include all the primes in the right hand product to get
+\begin{eqnarray} \label{RawTwinPrimeCountAtLimit}
+\lim_{x \to \infty} \pi_2(x) &=& \lim_{x \to \infty} x_2 \cdot \Big[\prod\limits_{q \ge 2}{\Big(1 - \frac{1}{p_q} \Big)}\Big]^2 \cdot \Big[\prod\limits_{j \ge 2}{\frac{p_j (p_j - 2)}{(p_j - 1)^2}}\Big]
+\nonumber\\
+&=& \lim_{x \to \infty} \frac{x}{2} \cdot \Big[\prod\limits_{q \ge 2}{\Big(1 - \frac{1}{p_q} \Big)}\Big]^2 \cdot C_2 ~ ,
+\nonumber\\
+\textrm{where}
+\nonumber\\
+C_2 &=& \prod\limits_{j \ge 2}{\frac{p_j (p_j - 2)}{(p_j - 1)^2}} \nonumber ~ .
+\end{eqnarray}
+
+Changing the limit from $q=1$, we get
+\begin{eqnarray} \nonumber
+\lim_{x \to \infty} \pi_2(x) &=& \lim_{x \to \infty} \frac{x}{2} \cdot \Big[\prod\limits_{q \ge 1}{\Big(1 - \frac{1}{p_q} \Big)}\Big]^2 \cdot \Big(1-\frac{1}{2}\Big)^{-2} \cdot C_2
+\nonumber\\
+ &=& \lim_{x \to \infty} x \cdot \Big[\prod\limits_{q \ge 1}{\Big(1 - \frac{1}{p_q} \Big)}\Big]^2 \cdot 2C_2 \nonumber ~ .
+\end{eqnarray}
+
+Now we can use the Merten's Theorem from \eqref{MertenTheorem} to arrive at
+\begin{equation} \label{StrongTwinPrimeTheorem}
+\lim_{x \to \infty} \frac{\pi_2(x)}{x / \ln^2(x)}= 2C_2 ~ ,
+\end{equation}
+which is also the strong form of the twin prime conjecture due to Hardy and Littlewood.
+
+\section{Generalizing For Prime Pairs (n, n+2k)}
+Let's consider what if we replace the polynomials $(n, n + 2)$ with $(n, n + 2k)$? In that case \eqref{NumberedTwinPairs} becomes
+\begin{eqnarray} \label{Numbered2kPairs}
+3: & 3,3+2k \nonumber \\
+4: & 5,5+2k \nonumber \\
+5: & 7,7+2k \nonumber \\
+6: & 9,9+2k \nonumber \\
+\vdots 
+\nonumber \\
+& \textrm{where } k \ge 1 ~ .
+\end{eqnarray}
+
+We notice that if $k$ is divisible by any of the primes in the set $\{p_{n_1}, p_{n_2}, \ldots, p_{n_m} \}$ then for those primes we cross out only one pair instead of two pairs. For rest of the primes, we cross out two pairs for each prime as we did in previous section. This means \eqref{TwinPrimeCountWithoutAlpha} now becomes
+\begin{eqnarray}
+\pi_{2k}(x,p_i) & = & x_2 \prod\limits_{k\nmid p_j, j = 2}^i {\Big(1-\frac{2}{p_j}\Big)} \prod\limits_{k\mid p_q, q = 2}^i {\Big(1-\frac{1}{p_q}\Big)} ~ ,
+\end{eqnarray}
+where we use the traditional notations to denote the pair counting function by $\pi_{2k}(x,p_i)$ and the condition to include $p_j$ in the product depending on if $k$ is divisible by that prime by $k \mid p_j$ and $k \nmid p_j$.
+
+We can further write above equation as
+\begin{eqnarray} \nonumber
+\pi_{2k}(x,p_i) & = & x_2 \prod\limits_{j = 2}^i {\Big(1-\frac{2}{p_j}\Big)} \cdot 
+\frac{1}{\prod\limits_{k\mid p_j, j = 2}^i {\Big(1-\frac{2}{p_j}\Big)}}
+\cdot \prod\limits_{k\mid p_q, q = 2}^i {\Big(1-\frac{1}{p_q}\Big)}
+\nonumber\\
+& = & x_2 \prod\limits_{j = 2}^i {\Big(1-\frac{2}{p_j}\Big)} \cdot \prod\limits_{k\mid p_q, q = 2}^i {\Big(\frac{p_q-1}{p_q-2}\Big)} ~ .
+\end{eqnarray}
+Taking the limit $x \to \infty$ and giving same treatment to the first product on right as we did in previous section, we get
+\begin{equation} \nonumber
+\lim_{x \to \infty} \frac{\pi_{2k}(x)}{x \prod\limits_{j \ge 1} {\Big[1-\frac{1}{{p_j }}\Big]^2}} = 2 C_{2k} ~ ,
+\end{equation}
+where
+\begin{equation} \nonumber
+C_{2k} = C_2 \prod\limits_{k\mid p_q, q = 2} {\Big(\frac{p_q-1}{p_q-2}\Big)} \nonumber ~ .
+\end{equation}
+
+Now we can use the Merten's Theorem from \eqref{MertenTheorem} to arrive at
+\begin{equation} \label{ExtendedGoldbachConjecture}
+\lim_{x \to \infty} \frac{\pi_{2k}(x)}{x / \ln^2(x)}= 2 C_{2k} ~ ,
+\end{equation}
+which is also the extended Goldbach conjecture and gives us the number of ways of writing any even number $2k$ as a sum of two primes as $x \to \infty$.
+
+
+\bibliographystyle{plain}
+\bibliography{TwinPrimesDistribution} 
+
+\end{document}

@@ -1,0 +1,35 @@
+\newcommand{\noopsort}[1]{} \newcommand{\printfirst}[2]{#1}
+  \newcommand{\singleletter}[1]{#1} \newcommand{\switchargs}[2]{#2#1}
+\begin{thebibliography}{1}
+
+\bibitem{HLConjecture}
+G.~H. Hardy and J.~E. Littlewood.
+\newblock Some problems of `partitio numerorum' : {III}: On the expression of a
+  number as a sum of primes.
+\newblock {\em Acta Math}, 44:1--70, 1923.
+\newblock Reprinted in ``Collected Papers of G. H. Hardy,'' Vol. I, pp.
+  561-630, Clarendon Press, Oxford, 1966.
+
+\bibitem{IntroNT}
+G.~H. Hardy and E.~M. Wright.
+\newblock An introduction to the theory of numbers.
+\newblock 1979.
+\newblock See page 351 for the proof of Merten's Theorem.
+
+\bibitem{HarmonicSeries}
+Julian Havil.
+\newblock {\em {Gamma}: Exploring {Euler}'s Constant}.
+\newblock Preceton University Press, 2003.
+
+\bibitem{SieveMethods}
+Paul Pollack.
+\newblock Not always buried deep: Selections from analytic and combinatorial
+  number theory.
+\newblock \url{http://www.princeton.edu/~ppollack/notes/notes.pdf}, 2004.
+
+\bibitem{EulerProduct}
+Eric~W. Weisstein.
+\newblock Euler product.
+\newblock \url{http://mathworld.wolfram.com/EulerProduct.html}, 2005.
+
+\end{thebibliography}
